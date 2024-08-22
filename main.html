@@ -9,23 +9,27 @@
     <table id="groceryTable">
         <tr class="item">
             <td>Apple</td>
-            <td class="prices">50</td>
+            <td class="price" contenteditable="true">50</td>
         </tr>
         <tr class="item">
             <td>Banana</td>
-            <td class="prices">20</td>
+            <td class="price" contenteditable="true">20</td>
         </tr>
         <tr class="item">
             <td>Orange</td>
-            <td class="prices">30</td>
+            <td class="price" contenteditable="true">30</td>
         </tr>
+        <!-- Add more items as needed -->
     </table>
+    
+    <button onclick="calculateTotal()">Calculate Total</button>
+    <div id="ans"></div>
 
     <script>
         // Function to calculate the total price
         function calculateTotal() {
-            // Get all elements with the class "prices"
-            const priceElements = document.querySelectorAll('.prices');
+            // Get all elements with the class "price"
+            const priceElements = document.querySelectorAll('.price');
             let total = 0;
 
             // Iterate through each price element and add the value to the total
@@ -33,22 +37,10 @@
                 total += parseFloat(priceElement.textContent);
             });
 
-            // Create a new row to display the total price
-            const table = document.getElementById('groceryTable');
-            const newRow = document.createElement('tr');
-            const newCell = document.createElement('td');
-
-            // Set the colspan to span across both columns
-            newCell.setAttribute('colspan', 2);
-            newCell.textContent = `Total Price: ${total}`;
-
-            // Append the cell to the new row and the row to the table
-            newRow.appendChild(newCell);
-            table.appendChild(newRow);
+            // Display the total price
+            const totalElement = document.getElementById('ans');
+            totalElement.textContent = `Total Price: ${total}`;
         }
-
-        // Call the function to calculate the total price and display it
-        calculateTotal();
     </script>
 </body>
 </html>
