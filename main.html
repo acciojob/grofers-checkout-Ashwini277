@@ -4,43 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grofers Checkout</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        #ans {
+            text-align: right;
+            margin-right: 25%;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <table id="groceryTable">
+
+<h2 style="text-align:center;">Grocery List</h2>
+
+<table id="grocery-list">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
         <tr class="item">
-            <td>Apple</td>
+            <td>Apples</td>
+            <td class="price" contenteditable="true">55</td>
+        </tr>
+        <tr class="item">
+            <td>Bananas</td>
+            <td class="price" contenteditable="true">75</td>
+        </tr>
+        <tr class="item">
+            <td>Cherries</td>
+            <td class="price" contenteditable="true">100</td>
+        </tr>
+        <tr class="item">
+            <td>Dates</td>
+            <td class="price" contenteditable="true">130</td>
+        </tr>
+        <tr class="item">
+            <td>Eggs</td>
             <td class="price" contenteditable="true">50</td>
         </tr>
-        <tr class="item">
-            <td>Banana</td>
-            <td class="price" contenteditable="true">20</td>
-        </tr>
-        <tr class="item">
-            <td>Orange</td>
-            <td class="price" contenteditable="true">30</td>
-        </tr>
-        <!-- Add more items as needed -->
-    </table>
-    
+    </tbody>
+</table>
+
+<div style="text-align:center;">
     <button onclick="calculateTotal()">Calculate Total</button>
-    <div id="ans"></div>
+</div>
 
-    <script>
-        // Function to calculate the total price
-        function calculateTotal() {
-            // Get all elements with the class "price"
-            const priceElements = document.querySelectorAll('.price');
-            let total = 0;
+<div id="ans"></div>
 
-            // Iterate through each price element and add the value to the total
-            priceElements.forEach((priceElement) => {
-                total += parseFloat(priceElement.textContent);
-            });
+<script>
+    function calculateTotal() {
+        // Get all elements with the class "price"
+        const priceElements = document.querySelectorAll('.price');
+        let total = 0;
 
-            // Display the total price
-            const totalElement = document.getElementById('ans');
-            totalElement.textContent = `Total Price: ${total}`;
-        }
-    </script>
+        // Iterate through each price element and add the value to the total
+        priceElements.forEach((priceElement) => {
+            total += parseFloat(priceElement.textContent) || 0; // Ensure that invalid numbers are treated as 0
+        });
+
+        // Display the total price in a new row
+        const ansElement = document.getElementById('ans');
+        ansElement.textContent = `Total Price: ${total}`;
+    }
+</script>
+
 </body>
 </html>
